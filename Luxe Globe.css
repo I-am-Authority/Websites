@@ -1335,7 +1335,7 @@ textarea.form-control {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 760px) {
     .nav-menu {
         position: fixed;
         top: 0;
