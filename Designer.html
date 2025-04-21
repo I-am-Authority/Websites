@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Level Experience</title>
+    <style>
+        /* Base Styles & Variables */
+:root {
+    --primary: #4a9eff;
+    --accent: #a855f7;
+    --gradient-1: linear-gradient(45deg, var(--primary), var(--accent));
+    --gradient-2: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    --dark: #111111;
+    --darker: #000000;
+    --light: rgba(255, 255, 255, 0.87);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --blur: blur(20px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+body {
+    background-color: var(--darker);
+    color: var(--light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Header & Navigation */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: var(--blur);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: clamp(40px, 8vw, 80px);
+    margin-bottom: 30px;
+    background: linear-gradient(45deg, var(--light), rgba(255,255,255,0.5));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+}
+
+.hero-content p {
+    font-size: clamp(18px, 3vw, 24px);
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 40px;
+}
+
+/* About Section */
+.about-section {
+    padding: 120px 40px;
+    background: var(--gradient-2);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 60px auto 0;
+}
+
+.team-member {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 40px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.team-member::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-1);
+    opacity: 0;
+    transition: var(--transition);
+    z-index: 0;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+.team-member:hover::before {
+    opacity: 0.1;
+}
+
+.member-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background: var(--gradient-1);
+    position: relative;
+    z-index: 1;
+}
+
+/* Portfolio Section */
+.portfolio-section {
+    padding: 120px 40px;
+    background: var(--darker);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 60px auto 0;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.project-image {
+    width: 100%;
+    height: 250px;
+    background: var(--gradient-2);
+    margin-bottom: 20px;
+}
+
+.project-card h3 {
+    padding: 0 30px;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.project-card p {
+    padding: 0 30px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+}
+
+.tech-stack {
+    padding: 0 30px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.tech-stack span {
+    padding: 5px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* Services Section */
+.services-section {
+    padding: 120px 40px;
+    background: var(--gradient-2);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 60px auto 0;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 40px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-1);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card:hover::before {
+    opacity: 0.1;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 120px 40px;
+    background: var(--darker);
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 60px auto 0;
+}
+
+.contact-info {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: grid;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group input,
+.form-group textarea {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    color: var(--light);
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.submit-btn {
+    background: var(--gradient-1);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(74, 158, 255, 0.2);
+}
+
+/* Footer */
+.footer {
+    padding: 80px 40px;
+    background: var(--dark);
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 24px;
+    font-weight: 700;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
+/* Animations */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid,
+    .portfolio-grid,
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-content {
+        padding: 0 20px;
+    }
+}
+
+/* Utility Classes */
+.section-title {
+    font-size: clamp(30px, 5vw, 48px);
+    text-align: center;
+    margin-bottom: 20px;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-description {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+:root {
+    --primary: #4a9eff;
+    --accent: #a855f7;
+    --dark: #111;
+    --darker: #000;
+    --light: rgba(255, 255, 255, 0.87);
+}
+
+body {
+    background-color: var(--darker);
+    color: var(--light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: default;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 20px;
+    position: relative;
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover::after {
+    transform: scaleX(1);
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-size: 80px;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    background: linear-gradient(45deg, var(--light), rgba(255,255,255,0.5));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 20px;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.cta-button {
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, var(--accent), var(--primary));
+    border-radius: 30px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(74, 158, 255, 0.2);
+}
+
+.cta-button:hover::before {
+    opacity: 1;
+}
+
+.grid-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: top;
+    opacity: 0.3;
+}
+
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.floating-element {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    filter: blur(40px);
+    opacity: 0.1;
+    animation: float 20s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(100px, 100px) rotate(180deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 40px;
+    }
+    
+    .hero p {
+        font-size: 16px;
+        padding: 0 20px;
+    }
+    
+    .logo {
+        font-size: 24px;
+    }
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 1000;
+}
+.header::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--primary) 25%,
+        var(--accent) 50%,
+        var(--primary) 75%,
+        transparent 100%
+    );
+    animation: gradientBorder 3s linear infinite;
+}
+@keyframes gradientBorder {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+/* Optional: Add a subtle glow to the border */
+.header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: var(--gradient-1);
+    filter: blur(3px);
+    opacity: 0.5;
+    animation: gradientBorder 3s linear infinite;
+}
+    </style>
+</head>
+<body>
+      <!-- Header Section -->
+    <header class="header">
+        <h1 class="logo">Next Level</h1>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="grid-background"></div>
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Crafting Digital Experiences</h1>
+            <p>Pushing boundaries with innovative web solutions and creative design</p>
+            <button class="cta-button">View Our Work</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <h2>Who We Are</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-image"></div>
+                <h3>Alex Rivera</h3>
+                <p class="role">Lead Frontend Developer</p>
+                <p class="description">Specialist in React and modern JavaScript frameworks with 5 years of experience building scalable web applications.</p>
+                <div class="skills">
+                    <span>React</span>
+                    <span>TypeScript</span>
+                    <span>Next.js</span>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-image"></div>
+                <h3>Sarah Chen</h3>
+                <p class="role">UI/UX Designer</p>
+                <p class="description">Creating intuitive and beautiful user experiences with a focus on accessibility and user-centered design.</p>
+                <div class="skills">
+                    <span>Figma</span>
+                    <span>User Research</span>
+                    <span>Design Systems</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <h2>Our Work</h2>
+        <div class="portfolio-grid">
+            <article class="project-card">
+                <div class="project-image"></div>
+                <h3>E-Commerce Platform</h3>
+                <p>A full-featured online shopping platform with real-time inventory management</p>
+                <div class="tech-stack">
+                    <span>React</span>
+                    <span>Node.js</span>
+                    <span>MongoDB</span>
+                </div>
+                <a href="#" class="project-link">View Project →</a>
+            </article>
+            <article class="project-card">
+                <div class="project-image"></div>
+                <h3>Analytics Dashboard</h3>
+                <p>Real-time data visualization platform for business intelligence</p>
+                <div class="tech-stack">
+                    <span>Vue.js</span>
+                    <span>D3.js</span>
+                    <span>Firebase</span>
+                </div>
+                <a href="#" class="project-link">View Project →</a>
+            </article>
+            <article class="project-card">
+                <div class="project-image"></div>
+                <h3>Social Media App</h3>
+                <p>Mobile-first social platform with real-time messaging</p>
+                <div class="tech-stack">
+                    <span>React Native</span>
+                    <span>GraphQL</span>
+                    <span>AWS</span>
+                </div>
+                <a href="#" class="project-link">View Project →</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <h2>What We Offer</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Web Development</h3>
+                <p>Custom web applications built with modern technologies</p>
+            </div>
+            <div class="service-card">
+                <h3>UI/UX Design</h3>
+                <p>User-centered design solutions that drive engagement</p>
+            </div>
+            <div class="service-card">
+                <h3>Mobile Development</h3>
+                <p>Cross-platform mobile applications that perform</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="info-item">
+                    <i class="icon-email"></i>
+                    <p>hello@nextlevel.dev</p>
+                </div>
+                <div class="info-item">
+                    <i class="icon-phone"></i>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+                <div class="info-item">
+                    <i class="icon-location"></i>
+                    <p>San Francisco, CA</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link">GitHub</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Next Level</div>
+            <p class="footer-text">Creating exceptional digital experiences</p>
+            <p class="copyright">© 2025 Next Level. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
