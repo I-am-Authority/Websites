@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles/Next Level.css">
+    <title>Next Level Notes</title>
+
+</head>
+<body>
+    <header class="header">
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        <h1>Next Level</h1>
+    </header>
+
+    <nav class="sidebar" id="sidebar">
+        <a href="#work">Work Notes</a>
+        <a href="#personal">Personal Journal</a>
+        <a href="#ideas">Project Ideas</a>
+        <a href="#code">Code Snippets</a>
+        <a href="#books">Book Notes</a>
+    </nav>
+
+    <main class="main-content" id="main">
+        <div class="notes-container">
+            <div class="note-preview">
+                <h2 class="note-title">React Components</h2>
+                <p class="note-excerpt">Essential patterns for building reusable React components. Includes best practices for hooks, state management, and performance optimization.</p>
+                <div class="note-meta">
+                    <span class="note-date">April 15, 2025</span>
+                    <a href="#" class="note-link">Read More →</a>
+                </div>
+            </div>
+
+            <div class="note-preview">
+                <h2 class="note-title">Design Systems</h2>
+                <p class="note-excerpt">Comprehensive guide to creating and maintaining design systems. Focus on scalability and consistency across platforms.</p>
+                <div class="note-meta">
+                    <span class="note-date">April 18, 2025</span>
+                    <a href="#" class="note-link">Read More →</a>
+                </div>
+            </div>
+
+            <div class="note-preview">
+                <h2 class="note-title">API Architecture</h2>
+                <p class="note-excerpt">Best practices for designing RESTful APIs. Authentication, rate limiting, and versioning strategies included.</p>
+                <div class="note-meta">
+                    <span class="note-date">April 19, 2025</span>
+                    <a href="#" class="note-link">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
